@@ -23,9 +23,9 @@ def shortest_path(graph, start, target = ''):
         for node, distance in graph[current]:
             if distance + distances[current] < distances[node]: # if new distance to neighbor is smaller than known distance
                 distances[node] = distance + distances[current]
-                if paths[node] and paths[node][-1] == node:  # if a path exists and is complete but is not the shortest path, replace with new path
+                if paths[node] and paths[node][-1] == node:  # if a path exists and is complete but is not the shortest path, replace with current shorter path
                     paths[node] = paths[current][:]
-                else:
+                else: # if no path exists, create a path with current path
                     paths[node].extend(paths[current])
                 paths[node].append(node) # append the current node
         unvisited.remove(current)
